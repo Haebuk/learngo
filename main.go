@@ -2,23 +2,22 @@ package main
 
 import (
 	"fmt"
-	"strings"
+	"log"
+
+	"github.com/Haebuk/learngo/accounts"
 )
 
-func repeatMe(words ...string) {
-	fmt.Println(words)
-}
-
-func lenAndUpper(name string) (length int, uppercase string){
-	defer fmt.Println("I'm Done")
-	length = len(name)
-	uppercase = strings.ToUpper(name)
-	return
-}
-
 func main() {
-	fmt.Println("Hello World")
-	repeatMe("Hello", "World")
-	lenth, uppercase := lenAndUpper("Hello World")
-	fmt.Println(lenth, uppercase)
+	account := accounts.NewAccount("rjs")
+	account.Deposit(10)
+	fmt.Println(account.Balance())
+	err := account.WithDraw(5)
+	if err != nil{
+		log.Fatalln(err)
+	}
+	fmt.Println(account.Balance())
+	fmt.Println(account.Owner())
+	fmt.Println(account)
+	account.ChangeOwner("newrjs")
+	fmt.Println(account)
 }
