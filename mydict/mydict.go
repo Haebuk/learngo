@@ -5,8 +5,11 @@ import "errors"
 // Dictionary type
 type Dictionary map[string]string
 
-var errNotFound = errors.New("not found")
-var errWordExists = errors.New("word aleady exists")
+var (
+	errNotFound = errors.New("not found")
+	errWordExists = errors.New("word aleady exists")
+	errCantUpdate = errors.New("cant update the word that does not exists")
+)
 
 // Search for a word
 func (d Dictionary) Search(word string) (string, error){
@@ -27,4 +30,21 @@ func (d Dictionary) Add(word, def string) error {
 		return errWordExists		
 	}
 	return nil 
+}
+
+// Update a word to the dictionary
+func (d Dictionary) Update(word, definition string) error{
+	_, err := d.Search(word)
+	switch err{
+	case nil:
+		d[word] = definition
+	case errNotFound:
+		return errCantUpdate
+	}
+	return nil
+}
+
+// Delete a word
+func (d Dictionary) Delete(word string){
+	delete(d, word)
 }
