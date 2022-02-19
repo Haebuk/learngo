@@ -2,22 +2,16 @@ package main
 
 import (
 	"fmt"
-	"log"
 
-	"github.com/Haebuk/learngo/accounts"
+	"github.com/Haebuk/learngo/mydict"
 )
 
 func main() {
-	account := accounts.NewAccount("rjs")
-	account.Deposit(10)
-	fmt.Println(account.Balance())
-	err := account.WithDraw(5)
-	if err != nil{
-		log.Fatalln(err)
+	dictionary := mydict.Dictionary{"first": "first word"}
+	definition, err := dictionary.Search("Second")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(definition)
 	}
-	fmt.Println(account.Balance())
-	fmt.Println(account.Owner())
-	fmt.Println(account)
-	account.ChangeOwner("newrjs")
-	fmt.Println(account)
 }
