@@ -1,4 +1,4 @@
-module nomadcoder
+module github.com/haebuk/learngo/go-bookstore
 
 go 1.17
 

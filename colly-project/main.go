@@ -41,6 +41,7 @@ func crawl(month, day int) {
 
 	c.OnHTML(".mode-detail", func (e *colly.HTMLElement)  {
 		profileUrl := e.ChildAttr("div.lister-item-image > a", "href")
+		fmt.Printf("Link found: %q -> %s\n", e.Text, profileUrl)
 		profileUrl = e.Request.AbsoluteURL(profileUrl)
 		infoCollector.Visit(profileUrl)
 	})
