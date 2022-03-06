@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"text/template"
 
+	"github.com/gorilla/mux"
 	"github.com/learngo/nomadcoin/blockchain"
 )
 
@@ -38,7 +39,7 @@ func add(rw http.ResponseWriter, r *http.Request) {
 }
 
 func Start(port int) {
-	handler := http.NewServeMux()
+	handler := mux.NewRouter()
 	templates = template.Must(template.ParseGlob(templateDir + "pages/*.gohtml"))
 	templates = template.Must(templates.ParseGlob(templateDir + "partials/*.gohtml"))
 	handler.HandleFunc("/", home)
