@@ -31,7 +31,7 @@ func DB() *bolt.DB {
 }
 
 func Close() {
-	
+
 }
 
 func SaveBlock(hash string, data []byte) {
@@ -43,7 +43,7 @@ func SaveBlock(hash string, data []byte) {
 	utils.HandleErr(err)
 }
 
-func SaveBlockchain(data []byte) {
+func SaveCheckpoint(data []byte) {
 	err := DB().Update(func(tx *bolt.Tx) error {
 		bucket := tx.Bucket([]byte(dataBucket))
 		err := bucket.Put([]byte(checkpoint), data)
