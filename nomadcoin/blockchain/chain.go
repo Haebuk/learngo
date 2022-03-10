@@ -1,7 +1,6 @@
 package blockchain
 
 import (
-	"fmt"
 	"sync"
 
 	"github.com/learngo/nomadcoin/db"
@@ -89,11 +88,9 @@ func Blockchain() *blockchain {
 			if checkpoint == nil {
 				b.AddBlock("Genesis")
 			} else {
-				// restore b from bytes
 				b.restore(checkpoint)
 			}
 		})
 	}
-	fmt.Println(b.NewestHash)
 	return b
 }
