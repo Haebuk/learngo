@@ -8,7 +8,6 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/learngo/nomadcoin/blockchain"
-	"github.com/learngo/nomadcoin/utils"
 )
 
 var port string
@@ -27,9 +26,6 @@ type urlDescription struct {
 	Payload string `json:"data:string,omitempty"`
 }
 
-type addBlockBody struct {
-	Message string
-}
 
 type errorResponse struct {
 	ErrorMessage string `json:"errorMessage"`
@@ -71,9 +67,7 @@ func blocks(rw http.ResponseWriter, r *http.Request) {
 	case "GET":
 		json.NewEncoder(rw).Encode(blockchain.Blockchain().Blocks())
 	case "POST":
-		var addBlockBody addBlockBody
-		utils.HandleErr(json.NewDecoder(r.Body).Decode(&addBlockBody))
-		blockchain.Blockchain().AddBlock(addBlockBody.Message)
+		blockchain.Blockchain().AddBlock()
 		rw.WriteHeader(http.StatusCreated)
 	}
 }
