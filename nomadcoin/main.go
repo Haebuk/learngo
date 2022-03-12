@@ -1,13 +1,9 @@
 package main
 
-import (
-	"github.com/learngo/nomadcoin/cli"
-	"github.com/learngo/nomadcoin/db"
-)
+import "github.com/learngo/nomadcoin/wallet"
 
 
 
 func main() {
-	defer db.Close()
-	cli.Start()
+	wallet.Start()
 } 
