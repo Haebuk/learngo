@@ -1,12 +1,10 @@
 package wallet
 
 import (
-	"crypto/ecdsa"
-	"crypto/elliptic"
-	"crypto/rand"
 	"crypto/x509"
 	"encoding/hex"
 	"fmt"
+	"math/big"
 
 	"github.com/learngo/nomadcoin/utils"
 )
@@ -18,5 +16,22 @@ const (
 )
 
 func Start() {
+	privBytes, err := hex.DecodeString(privateKey)
+	utils.HandleErr(err)
 
+	private, err := x509.ParseECPrivateKey(privBytes)
+
+	utils.HandleErr(err)
+
+	sigBytes, err := hex.DecodeString(signature)
+	rBytes := sigBytes[:len(sigBytes)/2]
+	sBytes := sigBytes[len(sigBytes)/2:]
+	fmt.Printf("%d\n\n%d\n\n%d\n\n", sigBytes, rBytes, sBytes)
+
+	var bigR, bigS = big.Int{}, big.Int{}
+
+	bigR.SetBytes(rBytes)
+	bigS.SetBytes(sBytes)
+
+	fmt.Println(bigR, bigS)
 }
