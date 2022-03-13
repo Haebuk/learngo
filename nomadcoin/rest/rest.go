@@ -8,6 +8,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/learngo/nomadcoin/blockchain"
+	"github.com/learngo/nomadcoin/p2p"
 	"github.com/learngo/nomadcoin/utils"
 	"github.com/learngo/nomadcoin/wallet"
 )
@@ -78,6 +79,11 @@ func documentation(rw http.ResponseWriter, r *http.Request) {
 			Method: "GET",
 			Description: "Get TxOuts for an Address",
 		},
+		{
+			URL: url("/ws"),
+			Method: "GET",
+			Description: "Upgrade to Web Sockets",
+		},
 	}
 	json.NewEncoder(rw).Encode(data)
 }
@@ -110,6 +116,15 @@ func jsonContentTypeMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(rw, r)
 	})
 }
+
+func loggerMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(rw http.ResponseWriter, r *http.Request) {
+		fmt.Println(r.URL)
+		next.ServeHTTP(rw, r)
+	})
+}
+
+
 
 func status(rw http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(rw).Encode(blockchain.Blockchain())
@@ -153,7 +168,7 @@ func myWallet(rw http.ResponseWriter, r *http.Request) {
 func Start(aPort int){
 	port = fmt.Sprintf(":%d", aPort)
 	router := mux.NewRouter()
-	router.Use(jsonContentTypeMiddleware)
+	router.Use(jsonContentTypeMiddleware, loggerMiddleware)
 	router.HandleFunc("/", documentation).Methods("GET")
 	router.HandleFunc("/status", status).Methods("GET")
 	router.HandleFunc("/blocks", blocks).Methods("GET", "POST")
@@ -161,6 +176,7 @@ func Start(aPort int){
 	router.HandleFunc("/balance/{address}", balance).Methods("GET")
 	router.HandleFunc("/mempool", mempool).Methods("GET")
 	router.HandleFunc("/wallet", myWallet).Methods("GET")
+	router.HandleFunc("/ws", p2p.Upgrade).Methods("GET")
 	router.HandleFunc("/transactions", transactions).Methods("POST")
 	fmt.Printf("Listening on http://localhost%s\n", port)
 	log.Fatal(http.ListenAndServe(port, router))
