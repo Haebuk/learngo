@@ -1,2 +1,4 @@
 go.mod
 *.db
+.DS_Store
+.DS_Store?
