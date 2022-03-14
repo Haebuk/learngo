@@ -28,6 +28,7 @@ http://localhost:4000/balance/d358b994f16339f21a97d53cd71b538af5dae94a7b97e2a493
 
 ###
 POST http://localhost:4000/peers
+
 {
     "address": "127.0.0.1",
     "port": "3000"
