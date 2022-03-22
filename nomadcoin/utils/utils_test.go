@@ -3,6 +3,7 @@ package utils
 import (
 	"encoding/hex"
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -29,4 +30,13 @@ func ExampleHash() {
 	x := Hash(s)
 	fmt.Println(x)
 	// Output: 634e992c44a70db8d5ad52e5d595fc6607e6e6f5fb28e6d861012dfd
+}
+
+func TestToBytes(t *testing.T) {
+	s := "test"
+	b := ToBytes(s)
+	k := reflect.TypeOf(b).Kind()
+	if  k != reflect.Slice {
+		t.Errorf("ToBytes should return a slice of bytes got %s", k)
+	}
 }
