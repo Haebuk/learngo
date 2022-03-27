@@ -5,7 +5,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/learngo/nomadcoin/db"
 	"github.com/learngo/nomadcoin/utils"
 )
 
@@ -21,7 +20,7 @@ type Block struct {
 }
 
 func persistBlock(b *Block) {
-	db.SaveBlock(b.Hash, utils.ToBytes(b))
+	dbStorage.saveBlock(b.Hash, utils.ToBytes(b))
 }
 
 var ErrNotFound = errors.New("block not found")
@@ -31,7 +30,7 @@ func (b *Block) restore(data []byte) {
 }
 
 func FindBlock(hash string) (*Block, error) {
-	blockBytes := db.Block(hash)
+	blockBytes := dbStorage.findBlock(hash)
 	if blockBytes == nil {
 		return nil, ErrNotFound
 	}
@@ -62,8 +61,8 @@ func createBlock(prevHash string, height, diff int) *Block{
 		Difficulty: diff,
 		Nonce: 0,
 	}
-	block.mine()
 	block.Transactions = Mempool().TxToConfirm()
+	block.mine()
 	persistBlock(block)
 	return block
 }
