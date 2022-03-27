@@ -12,9 +12,9 @@ github.com/learngo/nomadcoin/wallet/wallet.go:27.27,30.2 2 0
 github.com/learngo/nomadcoin/wallet/wallet.go:32.39,36.2 3 0
 github.com/learngo/nomadcoin/wallet/wallet.go:38.40,43.2 4 0
 github.com/learngo/nomadcoin/wallet/wallet.go:45.43,51.2 5 0
-github.com/learngo/nomadcoin/wallet/wallet.go:53.40,56.2 2 0
-github.com/learngo/nomadcoin/wallet/wallet.go:58.42,60.2 1 0
-github.com/learngo/nomadcoin/wallet/wallet.go:62.45,68.2 5 0
+github.com/learngo/nomadcoin/wallet/wallet.go:53.40,56.2 2 1
+github.com/learngo/nomadcoin/wallet/wallet.go:58.42,60.2 1 1
+github.com/learngo/nomadcoin/wallet/wallet.go:62.45,68.2 5 1
 github.com/learngo/nomadcoin/wallet/wallet.go:70.65,72.17 2 0
 github.com/learngo/nomadcoin/wallet/wallet.go:75.2,80.26 6 0
 github.com/learngo/nomadcoin/wallet/wallet.go:72.17,74.3 1 0
