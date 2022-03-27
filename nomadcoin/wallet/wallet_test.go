@@ -50,7 +50,7 @@ func TestVerify(t *testing.T) {
 
 func TestRestoreBigInts(t *testing.T) {
 	_, _, err := restoreBigInts("xx")
-	if err == nil {
+	if err == nil { 
 		t.Error("restoreBigInts should return error when payload is not hex.")
 	}
 }
