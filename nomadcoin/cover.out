@@ -84,11 +84,11 @@ github.com/learngo/nomadcoin/blockchain/chain.go:153.17,158.24 3 1
 github.com/learngo/nomadcoin/blockchain/chain.go:158.24,160.4 1 1
 github.com/learngo/nomadcoin/blockchain/chain.go:160.9,162.4 1 1
 github.com/learngo/nomadcoin/blockchain/chain.go:167.52,171.2 3 0
-github.com/learngo/nomadcoin/blockchain/chain.go:173.50,181.34 8 0
-github.com/learngo/nomadcoin/blockchain/chain.go:181.34,183.3 1 0
-github.com/learngo/nomadcoin/blockchain/chain.go:186.52,196.43 10 0
-github.com/learngo/nomadcoin/blockchain/chain.go:196.43,198.9 2 0
-github.com/learngo/nomadcoin/blockchain/chain.go:198.9,200.4 1 0
+github.com/learngo/nomadcoin/blockchain/chain.go:173.50,181.34 8 1
+github.com/learngo/nomadcoin/blockchain/chain.go:181.34,183.3 1 1
+github.com/learngo/nomadcoin/blockchain/chain.go:186.52,196.43 10 1
+github.com/learngo/nomadcoin/blockchain/chain.go:196.43,198.9 2 1
+github.com/learngo/nomadcoin/blockchain/chain.go:198.9,200.4 1 1
 github.com/learngo/nomadcoin/blockchain/transactions.go:24.25,25.20 1 1
 github.com/learngo/nomadcoin/blockchain/transactions.go:30.2,30.10 1 1
 github.com/learngo/nomadcoin/blockchain/transactions.go:25.20,29.3 1 1
